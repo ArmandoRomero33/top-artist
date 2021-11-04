@@ -77,12 +77,6 @@ public class DetalleActivity extends AppCompatActivity implements DatePickerDial
     NestedScrollView containerMain;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    @BindView(R.id.tilNombre)
-    TextInputEditText tilNombre;
-    @BindView(R.id.tilApellidos)
-    TextInputEditText tilApellidos;
-    @BindView(R.id.tilEstatura)
-    TextInputEditText tilEstatura;
 
     private Artista mArtista;
     private Calendar mCalendar;
@@ -220,10 +214,6 @@ public class DetalleActivity extends AppCompatActivity implements DatePickerDial
                     configTitle();
                     showMessage(R.string.detalle_message_update_success);
                     Log.i("DBFlow", "Inserción correcta de datos.");
-
-                    fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_edit));
-                    enableUIElements(false);
-                    mIsEdit = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                     showMessage(R.string.detalle_message_update_fail);
@@ -231,7 +221,9 @@ public class DetalleActivity extends AppCompatActivity implements DatePickerDial
                 }
             }
 
-
+            fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_edit));
+            enableUIElements(false);
+            mIsEdit = false;
         } else {
             mIsEdit = true;
             fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_check));
@@ -244,25 +236,19 @@ public class DetalleActivity extends AppCompatActivity implements DatePickerDial
 
         if (etEstatura.getText() != null && (etEstatura.getText().toString().trim().isEmpty() ||
                 Integer.valueOf(etEstatura.getText().toString().trim()) < getResources().getInteger(R.integer.estatura_min)) ) {
-            tilEstatura.setError(getString(R.string.addArtist_error_estaturaMin));
-            tilEstatura.requestFocus();
+            etEstatura.setError(getString(R.string.addArtist_error_estaturaMin));
+            etEstatura.requestFocus();
             isValid = false;
-        } else {
-            tilEstatura.setError(null);
         }
         if (etApellidos.getText() != null && etApellidos.getText().toString().trim().isEmpty()) {
-            tilApellidos.setError(getString(R.string.addArtist_error_required));
-            tilApellidos.requestFocus();
+            etApellidos.setError(getString(R.string.addArtist_error_required));
+            etApellidos.requestFocus();
             isValid = false;
-        } else {
-            tilApellidos.setError(null);
         }
         if (etNombre.getText() != null && etNombre.getText().toString().trim().isEmpty()) {
-            tilNombre.setError(getString(R.string.addArtist_error_required));
-            tilNombre.requestFocus();
+            etNombre.setError(getString(R.string.addArtist_error_required));
+            etNombre.requestFocus();
             isValid = false;
-        } else {
-            tilNombre.setError(null);
         }
 
         return isValid;

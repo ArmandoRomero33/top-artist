@@ -3,13 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.alain.cursos.top.MainActivity">
     <item
-        android:id="@+id/action_lightTheme"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_lightTheme"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_darkTheme"
-        android:orderInCategory="200"
-        android:title="@string/action_darkTheme"
+        android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>
